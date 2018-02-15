@@ -10,6 +10,11 @@
  */
 
 #include <Tudat/JsonInterface/jsonInterface.h>
+#include "Tudat/JsonInterface/UnitTests/unitTestSupport.h"
+#include "Tudat/JsonInterface/Support/valueAccess.h"
+#include "Tudat/JsonInterface/Support/valueConversions.h"
+#include "Tudat/JsonInterface/Support/deserialization.h"
+
 
 #include <boost/lexical_cast.hpp>
 
@@ -48,21 +53,29 @@ int main( )
     const std::string cppFilePath( __FILE__ );
     const std::string cppFolder = cppFilePath.substr( 0, cppFilePath.find_last_of("/\\") + 1 );
 
+    std::string jsonFileName = "week1JsonInput.json";
+    JsonSimulationManager< > jsonSimulationManager( cppFolder + jsonFileName );
+
     for( int useLowFidelity = 0; useLowFidelity < 2; useLowFidelity++ )
     {
-        std::string jsonFileName;
-
-        if( useLowFidelity == 0 )
+        if( useLowFidelity == 1 )
         {
-            jsonFileName = "week1JsonInput.json";
+            jsonSimulationManager[ "propagators" ][ 0 ][ "accelerations" ][ "LRO" ] =
+                    R"(
+                    {
+                    "Moon": [
+                    {
+                    "type": "pointMassGravity"
+                    }
+                    ],
+                    "Earth": [
+                    {
+                    "type": "pointMassGravity"
+                    }
+                    ]
+                    }
+                    )"_json;
         }
-        else
-        {
-            jsonFileName = "week1JsonInputLowFidelity.json";
-        }
-
-        JsonSimulationManager< > jsonSimulationManager( cppFolder + jsonFileName );
-
         const std::string outputDirectory = getOutputPath( ) + "LROIntegrationResults/";
 
         // *********************** DEFINE NUMBER OF TESTS THAT YOU WILL RUN ************************
@@ -94,6 +107,8 @@ int main( )
             jsonSimulationManager[ "export" ][ 0 ][ "file" ] =
                     outputDirectory + "keplerOutput_" + std::to_string( propagatorType ) + "_" + std::to_string( useLowFidelity ) + ".dat";
             jsonSimulationManager[ "export" ][ 1 ][ "file" ] =
+                    outputDirectory + "modifiedEquinoctialOutput_" + std::to_string( propagatorType ) + "_" + std::to_string( useLowFidelity ) + ".dat";
+            jsonSimulationManager[ "export" ][ 2 ][ "file" ] =
                     outputDirectory + "cartesianOutput_" +  std::to_string( propagatorType ) +  "_" + std::to_string( useLowFidelity ) + ".dat";
 
             // Create settings objects
@@ -131,7 +146,8 @@ int main( )
                                 moonGravitationalParameter );
                 }
                 input_output::writeDataMapToTextFile(
-                            referenceKeplerOrbit, outputDirectory + "referenceOrbit_" +  std::to_string( propagatorType ) +  "_" + std::to_string( useLowFidelity ) + ".dat" );
+                            referenceKeplerOrbit, "referenceOrbit_" +  std::to_string( propagatorType ) +  "_" + std::to_string( useLowFidelity ) + ".dat",
+                            outputDirectory );
             }
 
 

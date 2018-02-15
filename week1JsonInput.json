@@ -117,6 +117,16 @@
             ]
         },
         {
+            "file": "modified_equinoctial_elements_LRO.dat",
+            "variables": [
+                {
+                    "body": "LRO",
+                    "dependentVariableType": "modifiedEquinoctialElements",
+                    "relativeToBody": "Moon"
+                }
+            ]
+        },
+        {
             "file": "cartesian_elements_LRO.dat",
             "variables": [
                 {

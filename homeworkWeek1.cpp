@@ -65,16 +65,15 @@ int main( )
                     {
                     "Moon": [
                     {
-                    "type": "pointMassGravity"
-                    }
-                    ],
-                    "Earth": [
-                    {
-                    "type": "pointMassGravity"
+                    "maximumDegree": 2,
+                    "maximumOrder": 2,
+                    "type": "sphericalHarmonicGravity"
                     }
                     ]
                     }
                     )"_json;
+
+
         }
         const std::string outputDirectory = getOutputPath( ) + "LROIntegrationResults/";
 

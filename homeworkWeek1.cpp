@@ -10,13 +10,7 @@
  */
 
 #include <Tudat/JsonInterface/jsonInterface.h>
-#include "Tudat/JsonInterface/UnitTests/unitTestSupport.h"
-#include "Tudat/JsonInterface/Support/valueAccess.h"
-#include "Tudat/JsonInterface/Support/valueConversions.h"
-#include "Tudat/JsonInterface/Support/deserialization.h"
-
-
-#include <boost/lexical_cast.hpp>
+#include "Tudat/JsonInterface/UnitTests/unitTestSupport.h
 
 using namespace tudat::json_interface;
 using namespace tudat::interpolators;
@@ -98,11 +92,11 @@ int main( )
             }
 
             jsonSimulationManager[ "bodies" ][ "LRO" ][ "initialState" ][ "argumentOfPeriapsis" ] =
-                    static_cast< double >( 0 * 36  ) * mathematical_constants::PI / 180.0;
+                    static_cast< double >( 3 * 36  ) * mathematical_constants::PI / 180.0;
             jsonSimulationManager[ "bodies" ][ "LRO" ][ "initialState" ][ "longitudeOfAscendingNode" ] =
-                    static_cast< double >( 0 * 36  ) * mathematical_constants::PI / 180.0;
+                    static_cast< double >( 4 * 36  ) * mathematical_constants::PI / 180.0;
             jsonSimulationManager[ "bodies" ][ "LRO" ][ "initialState" ][ "trueAnomaly" ] =
-                    static_cast< double >( 0 * 36  ) * mathematical_constants::PI / 180.0;
+                    static_cast< double >( 7 * 36  ) * mathematical_constants::PI / 180.0;
             jsonSimulationManager[ "export" ][ 0 ][ "file" ] =
                     outputDirectory + "keplerOutput_" + std::to_string( propagatorType ) + "_" + std::to_string( useLowFidelity ) + ".dat";
             jsonSimulationManager[ "export" ][ 1 ][ "file" ] =

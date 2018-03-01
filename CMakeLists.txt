@@ -212,7 +212,10 @@ list(APPEND TUDAT_APPLICATION_ESTIMATION_LIBRARIES tudat_simulation_setup tudat_
 
 ## INTEGRATION: SLIDE RESULTS
 add_executable(po_application_HomeworkWeek1 "${SRCROOT}/homeworkWeek1.cpp")
+add_executable(po_application_HomeworkWeek2 "${SRCROOT}/homeworkWeek2.cpp")
 setup_executable_target(po_application_HomeworkWeek1 "${SRCROOT}")
+setup_executable_target(po_application_HomeworkWeek2 "${SRCROOT}")
 target_link_libraries(po_application_HomeworkWeek1 json_interface_library ${TUDAT_APPLICATION_PROPAGATION_LIBRARIES} ${Boost_LIBRARIES} )
+target_link_libraries(po_application_HomeworkWeek2 json_interface_library ${TUDAT_APPLICATION_PROPAGATION_LIBRARIES} ${Boost_LIBRARIES} )
 
 

@@ -12,9 +12,6 @@
 #include <Tudat/JsonInterface/jsonInterface.h>
 #include "Tudat/JsonInterface/UnitTests/unitTestSupport.h"
 
-
-#include <boost/lexical_cast.hpp>
-
 using namespace tudat::json_interface;
 using namespace tudat::interpolators;
 using namespace tudat;
